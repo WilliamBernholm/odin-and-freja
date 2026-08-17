@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(freja)",
+      "Skill(freja:*)",
+      "Skill(odin)",
+      "Skill(odin:*)",
+      "Agent"
+    ]
+  }
+}

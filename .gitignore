@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------------------
+# Course content is NEVER committed to this repo.
+#
+# This repo ships the Odin and Freja skills only. Lecture notes, textbook
+# chapters, homework problems and answer keys belong to whoever wrote them --
+# often a publisher or an institution -- and must not end up in a public
+# repository by accident. Everything below is ignored on purpose.
+#
+# If you fork this to run your own course, keep these rules unless you are
+# certain you hold the rights to the material you are about to commit.
+# ---------------------------------------------------------------------------
+Lectures/
+Literature/
+Homeworks/
+CheatSheets/
+Solutions/
+solutions/
+
+# Personal/machine-local Claude Code overrides (not shared)
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/projects/
+.claude/todos/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Editor swap files
+*.swp
+*~
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
