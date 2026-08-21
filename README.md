@@ -44,7 +44,48 @@ Richard Glassey.
 
 ---
 
-## Setup
+## Quick setup: one paste, everything installed
+
+If you already have [Claude Code](https://claude.com/claude-code), this is the
+whole installation.
+
+**1. Make an empty folder** for your course, open a terminal in it and run:
+
+```bash
+claude
+```
+
+**2. Paste this in, exactly as it is:**
+
+```
+Set this folder up for Odin and Freja.
+Fetch https://raw.githubusercontent.com/WilliamBernholm/odin-and-freja/main/SETUP.md
+and follow it exactly. Do not do anything it does not ask for.
+```
+
+Claude downloads both skills, puts them where Claude Code will find them,
+installs the settings file, creates `Lectures/`, `Literature/` and
+`Homeworks/`, then verifies its own work. Under a minute. Say yes if it asks
+permission to fetch a URL or write files.
+
+**3. Restart Claude Code.** Close the session and open a new one in the same
+folder. **This step is not optional** — Claude Code only looks for skills when
+a session starts, so neither skill exists until you restart.
+
+**4. Drag your course material into the three folders** and start working.
+
+Two things worth knowing. The first time you open a new folder, Claude Code
+asks you to trust it; that is normal, it is your own folder. And one of the
+installed files is `.claude/settings.json`, which switches off Claude Code's
+suggested-reply text — **leave it there.** Without it, a student being quizzed
+by Freja is shown a plausible answer in the input box before they have
+thought about the question, which defeats the whole point of the tool.
+
+---
+
+## Manual setup
+
+If you would rather do it by hand, or you already have a course folder.
 
 **1. Install Claude Code** (needs a Claude subscription; no API key):
 
@@ -85,10 +126,15 @@ folders and both skills will find them:
 ```
 your-course/
 ├── .claude/
-│   ├── settings.json          <- pre-approves both skills (from this repo)
+│   ├── settings.json          <- pre-approves both skills, disables suggested replies
 │   └── skills/
 │       ├── freja/SKILL.md     <- the student quiz engine
 │       └── odin/SKILL.md      <- the homework generator
+│
+├── SETUP.md                   <- the recipe the agent follows; ignore it otherwise
+├── web/
+│   ├── FREJA_web.md           <- Freja for ChatGPT or Gemini, no install needed
+│   └── README.md              <- how students use that version
 │
 ├── Lectures/                  <- your lecture notes, one markdown file per lecture
 │   ├── 01_introduction.md
@@ -149,7 +195,45 @@ It gives feedback after each answer, escalates hints if you're stuck, and
 won't produce a submittable solution for you — if you ask it to just write
 the answer, it will keep scaffolding instead.
 
+## Freja without Claude Code: `web/`
+
+Not every student will install Claude Code, and it needs a paid Claude
+subscription. [`web/FREJA_web.md`](web/FREJA_web.md) is Freja packaged for
+plain web chat instead.
+
+The student opens a new chat, attaches that file plus **one** lecture note or
+section from your course, and types `run Freja`. No installation, no
+subscription, nothing for you to host. You can hand out the single file, or
+point them at this repo.
+
+**Tested in ChatGPT Pro and in Gemini on a free account.** Free ChatGPT and
+other assistants are untested rather than unsupported.
+
+It is the same Mastery Learning Loop with the same rules, but weaker in one
+specific way: it can only see what the student pastes into the chat, and it
+cannot re-read a source file to check itself the way the Claude Code version
+can. Two consequences worth passing on to students:
+
+- **One section per chat, never a whole chapter.** Chat assistants index
+  large files and search them rather than reading them, so the model ends up
+  seeing fragments and filling gaps from general knowledge. That is exactly
+  when it starts sounding confident about things your course never said.
+- **The first message should say "run Freja", not "quiz me".** In Gemini the
+  word "quiz" triggers its own built-in multiple-choice feature and Freja
+  never loads at all.
+
+Details for students are in [`web/README.md`](web/README.md).
+
+---
+
 ## Using Odin (teachers)
+
+Neither skill pins a model, so both run on whatever your Claude Code session
+is set to. **Odin is worth pointing at the strongest model you have access
+to** — it invents scenarios, writes worked solutions, and executes code to
+check its own numbers, and all three degrade noticeably on a smaller model.
+Freja is far less demanding, since it reads and questions rather than
+generates.
 
 > Generate a new HW2-style problem about hierarchical clustering
 

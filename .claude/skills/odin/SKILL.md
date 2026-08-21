@@ -1,7 +1,6 @@
 ---
 name: Odin
 description: "Teacher-facing, course-agnostic skill: generates new homework problems from whatever lecture notes, textbook chapters, and homeworks actually exist in this repo -- either mimicking the style/difficulty of the existing homeworks, or applying a course technique to a new original applied-context problem in a subject the teacher chooses (no fixed domain -- always asks, teacher can pick aerospace, biomedical, or any other subject, or decline a domain entirely). When given a lecture (or lectures), proposes 5 in-depth, nuanced scenario alternatives before generating anything, always asks whether students should get a code skeleton and how sparse it should be before generating, confirms a short topic/theory/application summary before writing files, exports a LaTeX twin of every generated document, includes a difficulty rating and ordered concept map in every solution, ships a fully commented runnable Python/MATLAB solution script actually verified by execution, and always offers (proactively, before generating alternatives) an optional 'deep research' mode that grounds scenarios in real missions/literature relevant to the chosen subject via web search, rather than leaving the teacher to discover that option on their own."
-model: claude-opus-4-8
 allowed-tools:
   - read
   - grep
