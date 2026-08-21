@@ -65,7 +65,7 @@ Content you may be asked to quiz on:
   that substitution is common in textbooks generally. This has been an
   observed real failure mode, not a hypothetical one — confirmed
   2026-07-09, `Odin` generated "effective exhaust velocity $c$" and "mass
-  ratio $R = m_0/m_f$" for an SD2900 rocket-propulsion problem from
+  ratio $R = m_0/m_f$" for a rocket-propulsion problem from
   general Tsiolkovsky-equation convention, when the source lecture
   actually defines $V_e$/$V_{\mathrm{eff}}$ and $\mu = m_f/m_0$ (the
   inverse ratio direction). A memory-based "this looks like the right
@@ -186,7 +186,7 @@ Content you may be asked to quiz on:
   (` - `) is not. Use a period, comma, colon, or parentheses instead.
   Applies to every question, clarification, and summary you write, not
   just prose.
-- This skill is meant to run in "study-mode" by default — never produce a final write-up a student could submit as their own homework solution. Before assuming this is the only applicable rule, check whether the course's own lecture notes state an AI-use or academic-integrity policy — `grep` `Lectures/*.md` for keywords like "AI use," "Claude," "academic integrity," or "disclosure" — and follow that policy's specific rules if one is found; otherwise default to the conservative study-mode behavior described here.
+- This skill is meant to run in "study-mode" by default — never produce a final write-up a student could submit as their own homework solution. Before assuming this is the only applicable rule, check whether the course's own lecture notes state an AI-use or academic-integrity policy — `grep` `Lectures/*` for keywords like "AI use," "Claude," "academic integrity," or "disclosure" — and follow that policy's specific rules if one is found; otherwise default to the conservative study-mode behavior described here.
 - **Ordinary help mid-loop is fine.** If the learner asks a small factual
   question while the loop is running — "what does RAAN stand for?", "what
   does this symbol mean?", "what is this error telling me?" — answer it
@@ -279,14 +279,15 @@ Concretely:
 
 **2. Literature mode** — the user asks about a textbook chapter or a
 topic covered in one.
-- There are **multiple chapters** under `Literature/*.md`, and more may be
-  added over time — never assume only Chapter 1 exists. Always `glob`
-  `Literature/Chapter_*.md` first to see what's actually there.
+- There are **usually multiple chapters** under `Literature/`, and more may
+  be added over time — never assume only the first one exists. Always `glob`
+  `Literature/*` first to see what's actually there, whatever the files are
+  named.
 - If a chapter number is given (e.g. "chapter 3", "the sparsity chapter"),
   match it against the glob results by number or by keywords in the
   filename/title. If only a topic keyword is given (e.g. "wavelets",
   "condition numbers", "clustering"), `grep` across all
-  `Literature/*.md` files to find the best-matching chapter and section —
+  `Literature/*` files to find the best-matching chapter and section —
   the same keyword-resolution approach used for lectures above. If the
   match is ambiguous (e.g. a topic could plausibly span two chapters),
   state which chapter/section you've resolved to and ask the learner to
@@ -313,9 +314,9 @@ topic covered in one.
 - **First, check for a Freja-safe companion file** — `glob` in the same
   directory as the resolved problem file, for a sibling with the same
   base filename plus `_freja.md` (e.g. if the problem is
-  `Homeworks/Aerospace/AE01_sindy-relative-motion.md`, check for
-  `Homeworks/Aerospace/AE01_sindy-relative-motion_freja.md`; for Mode-1-
-  style generated problems, `Homeworks/Generated/HW<N>_generated_<slug>_freja.md`).
+  `Homeworks/Aerospace/P01_relative-motion.md`, check for
+  `Homeworks/Aerospace/P01_relative-motion_freja.md`; or for mimic-mode
+  output, `Homeworks/Generated/HW<N>_generated_<slug>_freja.md`).
   This file, when it exists, is `Odin`'s purpose-built practice material:
   2–4 questions on the same technique applied to a different scenario,
   each with its own worked solution.
@@ -344,11 +345,11 @@ topic covered in one.
     the technique this problem uses is almost certainly taught somewhere in
     this repo, so **go find it before falling back on recall**, per SOURCE
     PRIORITY above.
-    - `grep` `Lectures/*.md` for the technique the problem is about, and
+    - `grep` `Lectures/*` for the technique the problem is about, and
       read the section that teaches it. That lecture is now your grounding:
       its method, its assumptions, and above all **its notation**, which a
       bare problem statement often uses without defining.
-    - If no lecture covers it, `grep` `Literature/*.md` for the same thing.
+    - If no lecture covers it, `grep` `Literature/*` for the same thing.
     - Only if neither covers it, fall back to your own domain knowledge —
       and say so plainly ("this isn't covered in the course material I can
       see, so the following is general background").

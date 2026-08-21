@@ -48,7 +48,7 @@ generation with an explicit note asking the teacher to spot-check the
 solution's mathematical correctness before use. Before assuming
 study-mode/conservative behavior is the only applicable rule, check
 whether the course's own lecture notes state an AI-use or
-academic-integrity policy — `grep` `Lectures/*.md` for keywords like "AI
+academic-integrity policy — `grep` `Lectures/*` for keywords like "AI
 use," "Claude," "academic integrity," or "disclosure" — and follow that
 policy's specific rules if one is found; otherwise default to the
 conservative behavior described above.
@@ -64,8 +64,8 @@ When the user asks to generate a problem that mimics an existing homework
 `glob` `Homeworks/**` for the existing homework(s)/quizzes to mimic. This
 repo's real anchors may be PDFs (the `read` tool supports PDFs natively),
 markdown, or a mix — treat whichever format is actually on disk as equally
-normal, not PDF as a default (a past SM2001-era example of this repo's
-homeworks was PDF-based; the current course's anchors may not be). If the
+normal, not PDF as a default (one course this was built against had
+PDF-based homeworks; the current course's anchors may not be). If the
 user names a specific homework, read that one; if they only name a topic,
 read whichever homework(s) are most likely to contain a comparable
 problem, and skim the others if helpful for calibrating difficulty.
@@ -74,8 +74,8 @@ problem, and skim the others if helpful for calibrating difficulty.
 Report back to the teacher what you found along these dimensions (grounded
 in what's actually in the PDF, not assumed):
 
-- **Problem count & structure** — homeworks vary a lot in shape (a past
-  SM2001-era example: one homework had 6 problems, another had 2, another
+- **Problem count & structure** — homeworks vary a lot in shape (in one
+  course: one homework had 6 problems, another had 2, another
   had 1 problem with two lettered sub-parts — illustrative only, not this
   course's actual numbers). "Mimicking" means matching a *comparable*
   homework's shape, not a fixed template — state which homework you're
@@ -176,7 +176,7 @@ chapter"). Resolve the source(s) to their technique(s) first:
   usually allow; a chapter's own end-of-chapter exercises may also seed
   Transfer-style problem ideas, same as in `Freja`'s literature mode.
 - If neither is named, and only a bare technique name was given,
-  `glob`/`grep` `Lectures/*.md` and `Literature/Chapter_*.md` to find where
+  `glob`/`grep` `Lectures/*` and `Literature/*` to find where
   that technique is actually taught in this course's content.
 
 **Step 1 — Identify the source technique from the actual content.**
@@ -871,7 +871,7 @@ material.
 
 **Concrete template** (fill in the bracketed parts; this is a skeleton to
 adapt to whatever typesetting convention the real homeworks/quizzes you
-measured actually use — shown below in the style this repo's SM2001-era
+measured actually use — shown below in the style one example course's
 homeworks used, illustrative only):
 
 ```latex
@@ -906,8 +906,8 @@ phrase it>
 ```
 
 - `<COURSE TITLE LINE>`: check if a course name/title is discoverable from
-  this repo's own content (e.g. the first heading of any `Lectures/*.md`
-  file, or `CLAUDE.md`/`PROJECT.md` if present) and use that if found;
+  this repo's own content (e.g. the first heading of any file in
+  `Lectures/`, or `CLAUDE.md`/`PROJECT.md` if present) and use that if found;
   otherwise ask the teacher once, early in the session, for the course
   code/title and reuse that answer for the rest of the session — don't
   re-ask on every generation.
